@@ -16,17 +16,17 @@ should do the following before running this installer again:
 4. 安装完成后，运行`brew update`，更新安装包的最新信息。
 5. 到此，homebrew就安装成功了。brew默认把下载的程序缓存在`/Library/Caches/Homebrew`目录，可以手动清理。
 brew的用法类似于Red Hat Linux的yum，常用用法如下：  
-`   brew search xxxx #查找软件包   
-    brew install xxxx #安装软件包   
-    brew list #列出已安装的软件包   
-    brew remove xxxx #删除软件包   
-    brew info xxxx #查看软件包信息   
-    brew deps xxxx #列出软件包的依赖关系  
-    brew update #更新brew  
-    brew outdated #列出过时的软件包，已安装但不是最新版  
-    brew upgrade #更新全部过时的软件包  
-    brew upgrade xxxx #更新指定的软件包  
-`
+
+    brew search xxxx #查找软件包   
+brew install xxxx #安装软件包   
+brew list #列出已安装的软件包   
+brew remove xxxx #删除软件包   
+brew info xxxx #查看软件包信息   
+brew deps xxxx #列出软件包的依赖关系  
+brew update #更新brew  
+brew outdated #列出过时的软件包，已安装但不是最新版  
+brew upgrade #更新全部过时的软件包  
+brew upgrade xxxx #更新指定的软件包  
 
 
 ## 2.安装Nginx
@@ -43,8 +43,8 @@ brew的用法类似于Red Hat Linux的yum，常用用法如下：
 
   pid        /usr/local/var/run/nginx/nginx.pid;
 
-  events {
-      worker_connections  1024;
+  events {  
+      worker_connections  1024;  
   }
 
   http {  
@@ -71,20 +71,20 @@ brew的用法类似于Red Hat Linux的yum，常用用法如下：
       \#    listen       somename:8080;
       \#    server_name  somename  alias  another.alias;
 
-      \#    location / {
-      \#        root   html;
-      \#        index  index.html index.htm;
-      \#    }
+      \#    location / {  
+      \#        root   html;  
+      \#        index  index.html index.htm;  
+      \#    }  
       \#}
 
-      \# HTTPS server
-      \#
+      \# HTTPS server  
+      \#  
       \#server {  
         \#    listen       443 ssl;
         \#    server_name  localhost;
 
         \#    ssl_certificate      cert.pem;
-        #    ssl_certificate_key  cert.key;
+        \#    ssl_certificate_key  cert.key;
 
         #    ssl_session_cache    shared:SSL:1m;
         #    ssl_session_timeout  5m;
@@ -124,25 +124,25 @@ brew的用法类似于Red Hat Linux的yum，常用用法如下：
         root   html;
     }
 
-    \# proxy the PHP scripts to Apache listening on 127.0.0.1:80
-    \#
-    \#location ~ \\.php$ {
-    \#    proxy_pass   http://127.0.0.1;
-    \#}
+    \# proxy the PHP scripts to Apache listening on 127.0.0.1:80  
+    \#  
+    \#location ~ \\.php$ {  
+    \#    proxy_pass   http://127.0.0.1;  
+    \#}  
 
-    \# pass the PHP scripts to FastCGI server listening on 127.0.0.1:9000
-    \#
-    \#location ~ \\.php$ {
-    \#    root           html;
-    \#    fastcgi_pass   127.0.0.1:9000;
-    \#    fastcgi_index  index.php;
-    \#    fastcgi_param  SCRIPT_FILENAME  /scripts$fastcgi_script_name;
-    \#    include        fastcgi_params;
-    \#}
+    \# pass the PHP scripts to FastCGI server listening on 127.0.0.1:9000  
+    \#  
+    \#location ~ \\.php$ {  
+    \#    root           html;  
+    \#    fastcgi_pass   127.0.0.1:9000;  
+    \#    fastcgi_index  index.php;  
+    \#    fastcgi_param  SCRIPT_FILENAME  /scripts$fastcgi_script_name;  
+    \#    include        fastcgi_params;  
+    \#}  
 
     \# deny access to .htaccess files, if Apache's document root
-    \# concurs with nginx's one
-    \#
+    \# concurs with nginx's one  
+    \#  
     location ~ /\.ht {
         deny  all;
     }
@@ -164,43 +164,44 @@ nginx -V #查看版本信息和编译信息`
 2. 编辑/etc/php-fpm.conf,修改第25行为`pid = /usr/local/var/run/php-fpm.pid`，修改第32行为`error_log = /usr/local/var/log/php-fpm.log`。
 3. 使用`sudo php-fpm`启动php-fpm。
 4. 修改`/usr/local/etc/nginx/servers/default.conf`文件内容为   
-`server {
-    listen       80;
-    server_name  localhost;
+    server {  
+        listen       80;  
+        server_name  localhost;  
 
-    charset utf-8;
+        charset utf-8;
 
-    access_log  /usr/local/var/log/nginx/default.access.log  main;
-    root   /usr/local/var/www;
+        access_log  /usr/local/var/log/nginx/default.access.log  main;
+        root   /usr/local/var/www;
 
-    \# proxy the PHP scripts to Apache listening on 127.0.0.1:80  
-    \#
-    \#location ~ \\.php$ {  
-    \#    proxy_pass   http://127.0.0.1;  
-    \#}  
+        \# proxy the PHP scripts to Apache listening on 127.0.0.1:80  
+        \#
+        \#location ~ \\.php$ {  
+        \#    proxy_pass   http://127.0.0.1;  
+        \#}  
 
-    \# pass the PHP scripts to FastCGI server listening on 127.0.0.1:9000  
-    \#
-    location ~ \\.php$ {  
-        fastcgi_pass   127.0.0.1:9000;
-        fastcgi_index  /index.php;
-        fastcgi_param  SCRIPT_FILENAME  $document_root$fastcgi_script_name;
-        include        fastcgi_params;
-    }
+        \# pass the PHP scripts to FastCGI server listening on 127.0.0.1:9000  
+        \#
+        location ~ \\.php$ {  
+            fastcgi_pass   127.0.0.1:9000;
+            fastcgi_index  /index.php;
+            fastcgi_param  SCRIPT_FILENAME  $document_root$fastcgi_script_name;
+            include        fastcgi_params;
+        }
 
-    \# deny access to .htaccess files, if Apache's document root
-    \# concurs with nginx's one
-    \#  
-    location ~ /\\.ht {
-        deny  all;
-    }
-} `  
+        \# deny access to .htaccess files, if Apache's document root
+        \# concurs with nginx's one
+        \#  
+        location ~ /\\.ht {
+            deny  all;
+        }
+    }   
 5. 使用`sudo nginx -s reload`命令重启nginx服务。
 6. 在/usr/local/var/www目录下新建info.php文件，修改该文件内容为：
 `<?php
 	echo phpinfo();
 ?>`
 7. 使用浏览器输入`http://127.0.0.1/info.php`，这时应该看到phpinfo()函数成功执行返回的页面了，表示nginx和php-fpm成功配对了。
+![screenshot1](image/2015-11-06-001.png)
 
 
 ## 4.安装MySQL
@@ -211,47 +212,57 @@ nginx -V #查看版本信息和编译信息`
 ## 5.安装Composer
 1. 使用`brew install homebrew/php/composer`命令安装composer，安装后运行`composer`命令就会看到其logo。
 
+## 6.安装mcryt和php-mcrypt扩展
+1. 使用`brew install homebrew/php/php5-mcrypt`命令安装扩展，brew会自动安装依赖关系。
 
-## 6.安装Laravel
+
+## 7.安装Laravel
 1. 使用`composer create-project laravel/laravel --prefer-dist`命令下载Laravel的源文件，加上--prefer-dist参数当前会下载5.1.11版到当前目录。
 2. 将下载到的laravel目录复制到`/usr/local/var/`下；
 3. 给laravel的storage目录增加写权限`sudo chmod a+w /usr/local/var/laravel/storage`；
 4. 修改/usr/local/etc/nginx/servers/default.conf文件为
     server {
-    listen       80;
-    server_name  localhost;
+        listen       80;
+        server_name  localhost;
 
-    charset utf-8;
+        charset utf-8;
 
-    access_log  /usr/local/var/log/nginx/default.access.log  main;
-    set $root_path '/usr/local/var/laravel/public';
-    root $root_path;
-
-    index index.php index.html index.htm;
-
-    try_files $uri $uri/ @rewrite;
-
-    location @rewrite {
-        rewrite ^/(.\*)$ /index.php?\_url=/$1;
-    }
-
-    location ~ \\.php {
-        fastcgi_pass 127.0.0.1:9000;
-        fastcgi_index /index.php;
-
-        fastcgi_split_path_info       ^(.+\\.php)(/.+)$;
-        fastcgi_param PATH_INFO       $fastcgi_path_info;
-        fastcgi_param PATH_TRANSLATED $document_root$fastcgi_path_info;
-        fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
-        include                       fastcgi_params;
-    }
-
-    location ~* ^/(css|img|js|flv|swf|download)/(.+)$ {
+        access_log  /usr/local/var/log/nginx/default.access.log  main;
+        set $root_path '/usr/local/var/laravel/public';
         root $root_path;
-    }
 
-    location ~ /\\.ht {
-        deny all;
-    }
-}
+        index index.php index.html index.htm;
+
+        try_files $uri $uri/ @rewrite;
+
+        location @rewrite {
+            rewrite ^/(.\*)$ /index.php?\_url=/$1;
+        }
+
+        location ~ \\.php {
+            fastcgi_pass 127.0.0.1:9000;
+            fastcgi_index /index.php;
+
+            fastcgi_split_path_info       ^(.+\\.php)(/.+)$;
+            fastcgi_param PATH_INFO       $fastcgi_path_info;
+            fastcgi_param PATH_TRANSLATED $document_root$fastcgi_path_info;
+            fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+            include                       fastcgi_params;
+        }
+
+        location ~* ^/(css|img|js|flv|swf|download)/(.+)$ {
+            root $root_path;
+        }
+
+        location ~ /\\.ht {
+            deny all;
+        }
+    }  
+
 5. 使用`sudo nginx -s reload`重启nginx，再次使用浏览器打开127.0.0.1的回环地址，这时就能看到larvel成功运行的界面了。
+
+## 7.编辑器
+使用sublime text 3作为php编辑器。
+
+## 8.调试
+使用XDebug配合sumlime text 调试。
