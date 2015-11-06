@@ -51,8 +51,8 @@ brew upgrade xxxx #更新指定的软件包
       include       mime.types;  
       default_type  application/octet-stream;  
       log_format  main  '$remote_addr - $remote_user [$time_local] "$request" '
-                        '$status $body_bytes_sent "$http_referer" '
-                        '"$http_user_agent" "$http_x_forwarded_for"';
+      '$status $body_bytes_sent "$http_referer" '
+      '"$http_user_agent" "$http_x_forwarded_for"';  
 
       #access_log  /usr/local/var/log/nginx/access.log  main;
 
@@ -80,25 +80,25 @@ brew upgrade xxxx #更新指定的软件包
       \# HTTPS server  
       \#  
       \#server {  
-        \#    listen       443 ssl;
-        \#    server_name  localhost;
+      \#    listen       443 ssl;  
+      \#    server_name  localhost;  
 
-        \#    ssl_certificate      cert.pem;
-        \#    ssl_certificate_key  cert.key;
+      \#    ssl_certificate      cert.pem;  
+      \#    ssl_certificate_key  cert.key;  
 
-        #    ssl_session_cache    shared:SSL:1m;
-        #    ssl_session_timeout  5m;
+      \#    ssl_session_cache    shared:SSL:1m;  
+      \#    ssl_session_timeout  5m;  
 
-        #    ssl_ciphers  HIGH:!aNULL:!MD5;
-        #    ssl_prefer_server_ciphers  on;
+      \#    ssl_ciphers  HIGH:!aNULL:!MD5;  
+      \#    ssl_prefer_server_ciphers  on;  
 
-        #    location / {
-        #        root   html;
-        #        index  index.html index.htm;
-        #    }
-        #}
+      \#    location / {  
+      \#        root   html;  
+      \#        index  index.html index.htm;  
+      \#    }  
+      \#}  
 
-        include servers/\*.conf;
+      include servers/\*.conf;
   }  
 
 3. 在`/usr/local/etc/nginx/servers`目录下新建`default.conf`配置文件，修改内容为以下：   
@@ -110,10 +110,10 @@ brew upgrade xxxx #更新指定的软件包
 
     access_log  /usr/local/var/log/nginx/default.access.log  main;  
 
-    location / \{  
-        root   /usr/local/var/www;  
-        index  index.html index.htm;  
-    \}  
+    location / {  
+    root   /usr/local/var/www;  
+    index  index.html index.htm;  
+    }  
 
     \#error_page  404              /404.html;
 
@@ -121,8 +121,8 @@ brew upgrade xxxx #更新指定的软件包
     \#
     error_page   500 502 503 504  /50x.html;
     location = /50x.html {  
-        root   html;
-    }
+    root   html;  
+    }  
 
     \# proxy the PHP scripts to Apache listening on 127.0.0.1:80  
     \#  
@@ -143,9 +143,9 @@ brew upgrade xxxx #更新指定的软件包
     \# deny access to .htaccess files, if Apache's document root
     \# concurs with nginx's one  
     \#  
-    location ~ /\.ht {
-        deny  all;
-    }
+    location ~ /\.ht {  
+    deny  all;  
+    }  
 }
 
 4. 在终端中使用`sudo nginx`命令启动nginx服务。这时打开本机浏览器，输入127.0.0.1的回环地址，应该就可以看到`Welcome to nginx!`的欢迎页面了。   
@@ -165,35 +165,35 @@ nginx -V #查看版本信息和编译信息`
 3. 使用`sudo php-fpm`启动php-fpm。
 4. 修改`/usr/local/etc/nginx/servers/default.conf`文件内容为   
     server {  
-        listen       80;  
-        server_name  localhost;  
+      listen       80;  
+      server_name  localhost;  
 
-        charset utf-8;
+      charset utf-8;
 
-        access_log  /usr/local/var/log/nginx/default.access.log  main;
-        root   /usr/local/var/www;
+      access_log  /usr/local/var/log/nginx/default.access.log  main;
+      root   /usr/local/var/www;
 
-        \# proxy the PHP scripts to Apache listening on 127.0.0.1:80  
-        \#
-        \#location ~ \\.php$ {  
-        \#    proxy_pass   http://127.0.0.1;  
-        \#}  
+      \# proxy the PHP scripts to Apache listening on 127.0.0.1:80  
+      \#
+      \#location ~ \\.php$ {  
+      \#    proxy_pass   http://127.0.0.1;  
+      \#}  
 
-        \# pass the PHP scripts to FastCGI server listening on 127.0.0.1:9000  
-        \#
-        location ~ \\.php$ {  
-            fastcgi_pass   127.0.0.1:9000;
-            fastcgi_index  /index.php;
-            fastcgi_param  SCRIPT_FILENAME  $document_root$fastcgi_script_name;
-            include        fastcgi_params;
-        }
+      \# pass the PHP scripts to FastCGI server listening on 127.0.0.1:9000  
+      \#
+      location ~ \\.php$ {  
+      fastcgi_pass   127.0.0.1:9000;  
+      fastcgi_index  /index.php;  
+      fastcgi_param  SCRIPT_FILENAME  $document_root$fastcgi_script_name;  
+      include        fastcgi_params;  
+      }  
 
-        \# deny access to .htaccess files, if Apache's document root
-        \# concurs with nginx's one
-        \#  
-        location ~ /\\.ht {
-            deny  all;
-        }
+      \# deny access to .htaccess files, if Apache's document root
+      \# concurs with nginx's one
+      \#  
+      location ~ /\\.ht {  
+      deny  all;  
+      }  
     }   
 5. 使用`sudo nginx -s reload`命令重启nginx服务。
 6. 在/usr/local/var/www目录下新建info.php文件，修改该文件内容为：
@@ -220,44 +220,44 @@ nginx -V #查看版本信息和编译信息`
 1. 使用`composer create-project laravel/laravel --prefer-dist`命令下载Laravel的源文件，加上--prefer-dist参数当前会下载5.1.11版到当前目录。
 2. 将下载到的laravel目录复制到`/usr/local/var/`下；
 3. 给laravel的storage目录增加写权限`sudo chmod a+w /usr/local/var/laravel/storage`；
-4. 修改/usr/local/etc/nginx/servers/default.conf文件为
-    server {
-        listen       80;
-        server_name  localhost;
+4. 修改/usr/local/etc/nginx/servers/default.conf文件为   
+    server {   
+      listen       80;  
+      server_name  localhost;  
 
-        charset utf-8;
+      charset utf-8;  
 
-        access_log  /usr/local/var/log/nginx/default.access.log  main;
-        set $root_path '/usr/local/var/laravel/public';
-        root $root_path;
+      access_log  /usr/local/var/log/nginx/default.access.log  main;  
+      set $root_path '/usr/local/var/laravel/public';  
+      root $root_path;  
 
-        index index.php index.html index.htm;
+      index index.php index.html index.htm;  
 
-        try_files $uri $uri/ @rewrite;
+      try_files $uri $uri/ @rewrite;  
 
-        location @rewrite {
-            rewrite ^/(.\*)$ /index.php?\_url=/$1;
-        }
+      location @rewrite {  
+      rewrite ^/(.\*)$ /index.php?\_url=/$1;  
+      }
 
-        location ~ \\.php {
-            fastcgi_pass 127.0.0.1:9000;
-            fastcgi_index /index.php;
+      location ~ \\.php {  
+      fastcgi_pass 127.0.0.1:9000;  
+      fastcgi_index /index.php;  
 
-            fastcgi_split_path_info       ^(.+\\.php)(/.+)$;
-            fastcgi_param PATH_INFO       $fastcgi_path_info;
-            fastcgi_param PATH_TRANSLATED $document_root$fastcgi_path_info;
-            fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
-            include                       fastcgi_params;
-        }
+      fastcgi_split_path_info       ^(.+\\.php)(/.+)$;  
+      fastcgi_param PATH_INFO       $fastcgi_path_info;  
+      fastcgi_param PATH_TRANSLATED $document_root$fastcgi_path_info;  
+      fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;  
+      include                       fastcgi_params;  
+      }
 
-        location ~* ^/(css|img|js|flv|swf|download)/(.+)$ {
-            root $root_path;
-        }
+      location ~* ^/(css|img|js|flv|swf|download)/(.+)$ {  
+      root $root_path;  
+      }  
 
-        location ~ /\\.ht {
-            deny all;
-        }
-    }  
+      location ~ /\\.ht {  
+      deny all;  
+      }  
+  }  
 
 5. 使用`sudo nginx -s reload`重启nginx，再次使用浏览器打开127.0.0.1的回环地址，这时就能看到larvel成功运行的界面了。
 
