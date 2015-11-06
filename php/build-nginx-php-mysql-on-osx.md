@@ -16,17 +16,17 @@ should do the following before running this installer again:
 4. 安装完成后，运行`brew update`，更新安装包的最新信息。
 5. 到此，homebrew就安装成功了。brew默认把下载的程序缓存在`/Library/Caches/Homebrew`目录，可以手动清理。
 brew的用法类似于Red Hat Linux的yum，常用用法如下：  
-> brew search xxxx #查找软件包  
-brew install xxxx #安装软件包  
-brew list #列出已安装的软件包  
-brew remove xxxx #删除软件包  
-brew info xxxx #查看软件包信息  
-brew deps xxxx #列出软件包的依赖关系  
-brew update #更新brew  
-brew outdated #列出过时的软件包，已安装但不是最新版  
-brew upgrade #更新全部过时的软件包  
-brew upgrade xxxx #更新指定的软件包  
-
+`   brew search xxxx #查找软件包   
+    brew install xxxx #安装软件包   
+    brew list #列出已安装的软件包   
+    brew remove xxxx #删除软件包   
+    brew info xxxx #查看软件包信息   
+    brew deps xxxx #列出软件包的依赖关系  
+    brew update #更新brew  
+    brew outdated #列出过时的软件包，已安装但不是最新版  
+    brew upgrade #更新全部过时的软件包  
+    brew upgrade xxxx #更新指定的软件包  
+`
 
 
 ## 2.安装Nginx
@@ -255,5 +255,3 @@ nginx -V #查看版本信息和编译信息`
     }
 }
 5. 使用`sudo nginx -s reload`重启nginx，再次使用浏览器打开127.0.0.1的回环地址，这时就能看到larvel成功运行的界面了。
-
- 
