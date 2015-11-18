@@ -117,9 +117,9 @@ brew upgrade xxxx #更新指定的软件包
 
     \#error_page  404              /404.html;
 
-    \# redirect server error pages to the static page /50x.html
-    \#
-    error_page   500 502 503 504  /50x.html;
+    \# redirect server error pages to the static page /50x.html  
+    \#  
+    error_page   500 502 503 504  /50x.html;  
     location = /50x.html {  
     root   html;  
     }  
@@ -152,11 +152,11 @@ brew upgrade xxxx #更新指定的软件包
 表示nginx已经安装成功。   
 
 5. 其他Nginx命令   
-`nginx -t #测试nginx配置文件
-nginx -s reload #重载nginx服务
-nginx -s stop #停止nginx服务
-nginx -v #查看版本信息
-nginx -V #查看版本信息和编译信息`  
+nginx -t #测试nginx配置文件   
+nginx -s reload #重载nginx服务   
+nginx -s stop #停止nginx服务  
+nginx -v #查看版本信息  
+nginx -V #查看版本信息和编译信息
 
 
 ## 3.配置PHP-FPM
@@ -180,7 +180,7 @@ nginx -V #查看版本信息和编译信息`
       \#}  
 
       \# pass the PHP scripts to FastCGI server listening on 127.0.0.1:9000  
-      \#
+      \#  
       location ~ \\.php$ {  
       fastcgi_pass   127.0.0.1:9000;  
       fastcgi_index  /index.php;  
