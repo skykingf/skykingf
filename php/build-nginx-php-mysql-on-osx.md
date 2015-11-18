@@ -170,11 +170,11 @@ nginx -V #查看版本信息和编译信息
 
       charset utf-8;
 
-      access_log  /usr/local/var/log/nginx/default.access.log  main;
+      access_log  /usr/local/var/log/nginx/default.access.log  main;   
       root   /usr/local/var/www;
 
       \# proxy the PHP scripts to Apache listening on 127.0.0.1:80  
-      \#
+      \#  
       \#location ~ \\.php$ {  
       \#    proxy_pass   http://127.0.0.1;  
       \#}  
