@@ -205,7 +205,7 @@ nginx -V #查看版本信息和编译信息
 
 
 ## 4.安装MySQL
-1. 使用`brew install mysql`安装MySQL服务，当前的brew提供的版本是v5.6.27，安装过程中会自动初始化MySQL所需的数据库。
+1. 使用`brew install mysql`安装MySQL服务，当前的brew提供的版本是v5.7.9，安装过程中会自动初始化MySQL所需的数据库。
 2. 使用`mysql.server start`命令启动MySQL服务；使用`mysql.server stop`命令停止MySQL服务。
 3. 默认安装的root用户密码为空，启动服务后使用`mysql -uroot`测试root用户和系统服务。
 
@@ -213,7 +213,7 @@ nginx -V #查看版本信息和编译信息
 1. 使用`brew install homebrew/php/composer`命令安装composer，安装后运行`composer`命令就会看到其logo。
 
 ## 6.安装mcryt和php-mcrypt扩展
-1. 使用`brew install homebrew/php/php5-mcrypt`命令安装扩展，brew会自动安装依赖关系。
+1. 使用`brew install homebrew/php/php55-mcrypt`命令安装扩展，brew会自动安装依赖关系。
 
 
 ## 7.安装Laravel
