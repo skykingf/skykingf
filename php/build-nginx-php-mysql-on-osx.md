@@ -1,6 +1,6 @@
 # 在OS X上搭建Nginx＋PHP＋MySQL的Web开发环境
 
-* OS X: EI Capitan 10.11.1   
+* OS X: EI Capitan 10.11.4   
 
 ## 1.安装homebrew
 1. 打开终端Terminal。
@@ -30,7 +30,7 @@ brew upgrade xxxx #更新指定的软件包
 
 
 ## 2.安装Nginx
-1. 使用`brew install nginx`安装Nginx，当前的稳定版本为1.8.0。
+1. 使用`brew install nginx`安装Nginx，当前的稳定版本为1.8.1。
 默认Nginx的配置文件安装在`/usr/local/etc/nginx`, 程序文件安装在`/usr/local/bin`, Web目录安装在`/usr/local/var/www`。
 
 2. 修改`/usr/local/etc/nginx/nginx.conf`文件,改为如下内容   
@@ -205,7 +205,7 @@ nginx -V #查看版本信息和编译信息
 
 
 ## 4.安装MySQL
-1. 使用`brew install mysql`安装MySQL服务，当前的brew提供的版本是v5.7.9，安装过程中会自动初始化MySQL所需的数据库。
+1. 使用`brew install mysql`安装MySQL服务，当前的brew提供的版本是v5.7.12，安装过程中会自动初始化MySQL所需的数据库。
 2. 使用`mysql.server start`命令启动MySQL服务；使用`mysql.server stop`命令停止MySQL服务。
 3. 默认安装的root用户密码为空，启动服务后使用`mysql -uroot`测试root用户和系统服务。
 
@@ -217,7 +217,7 @@ nginx -V #查看版本信息和编译信息
 
 
 ## 7.安装Laravel
-1. 使用`composer create-project laravel/laravel --prefer-dist`命令下载Laravel的源文件，加上--prefer-dist参数当前会下载5.1.11版到当前目录。
+1. 使用`composer create-project laravel/laravel --prefer-dist`命令下载Laravel的源文件，加上--prefer-dist参数当前会下载5.2.31版到当前目录。
 2. 将下载到的laravel目录复制到`/usr/local/var/`下；
 3. 给laravel的storage目录增加写权限`sudo chmod a+w /usr/local/var/laravel/storage`；
 4. 修改/usr/local/etc/nginx/servers/default.conf文件为   
@@ -262,7 +262,7 @@ nginx -V #查看版本信息和编译信息
 5. 使用`sudo nginx -s reload`重启nginx，再次使用浏览器打开127.0.0.1的回环地址，这时就能看到larvel成功运行的界面了。
 
 ## 7.编辑器
-使用sublime text 3作为php编辑器。
+使用sublime text 3或Atom作为php编辑器。
 
 ## 8.调试
-使用XDebug配合sumlime text 调试。
+使用XDebug配合sumlime text或Atom调试。
